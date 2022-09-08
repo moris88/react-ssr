@@ -33,6 +33,14 @@ try {
         res.send(html)
     })
 
+    app.get('/test', (req, res) => { 
+        res.status(200).send({
+            response: {
+                test: 'test'
+            }
+        })
+    })
+
     app.use(express.static('./build'))
 
     app.listen(port, () => {
