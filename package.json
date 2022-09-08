@@ -1,0 +1,41 @@
+{
+  "name": "react-ssr",
+  "version": "0.0.1",
+  "main": "built/server.js",
+  "scripts": {
+    "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
+    "client:dev": "esbuild client/src/index.tsx --bundle --watch --sourcemap --color=true --keep-names --outfile=build/app.js",
+    "server:dev": "esbuild server/src/server.tsx --bundle --watch --sourcemap --color=true --keep-names --outfile=build/server.js --platform=node",
+    "client:prod": "esbuild client/src/index.tsx --bundle --minify --outfile=build/app.js",
+    "server:prod": "esbuild server/src/server.tsx --bundle --minify --outfile=build/server.js --platform=node",
+    "build:dev": "run-p client:dev server:dev",
+    "serve:dev": "nodemon build/server.js",
+    "build:prod": "run-p client:prod server:prod",
+    "serve:prod": "node build/server.js",
+    "dev": "run-s build:dev",
+    "server": "run-s serve:dev",
+    "start": "run-s build:prod serve:prod"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "npm-run-all": "^4.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "esbuild": "^0.15.7",
+    "eslint": "^8.23.0",
+    "eslint-config-standard-with-typescript": "^22.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.1",
+    "eslint-plugin-react": "^7.31.7",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.2"
+  }
+}
