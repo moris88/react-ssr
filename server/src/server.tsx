@@ -6,10 +6,11 @@ import dotenv from 'dotenv'
 
 const { log, error } = console
 
-const ENV = dotenv.config().parsed
+const environment = dotenv.config().parsed
+const env = environment ? environment : { PORT: 3000, TITLE: 'SS REACT'}
 const app = express()
-const port = ENV.PORT || 3000
-const title = ENV.TITLE || 'SSR React'
+const port = env.PORT ?? 3000
+const title = env.TITLE ?? 'SSR React'
 
 try {
     app.get('/', (req, res) => {
